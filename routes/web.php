@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\PernyataanController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PernyataanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PernyataanController::class, 'index']);
 Route::post('pernyataan', [PernyataanController::class, 'simpan'])->name('pernyataan.simpan');
+
+Auth::routes();
+
+Route::get('/admin', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
