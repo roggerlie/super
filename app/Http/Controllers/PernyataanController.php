@@ -39,9 +39,9 @@ Surat Pernyataan';
         return view('form_berhasil');
     }
 
-    public function test()
+    public function test($nis)
     {
-        $data = Pernyataan::where('nisn', '56787888')->first();
+        $data = Pernyataan::where('nisn', $nis)->first();
         $qrcode = $data->nama_ortu . '
 ' . date('d/m/Y') . '
 ' . $data->nama_siswa . '

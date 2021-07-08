@@ -22,4 +22,4 @@ Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
 
-Route::get('test', [PernyataanController::class, 'test']);
+Route::get('test/{nis}', [PernyataanController::class, 'test']);
