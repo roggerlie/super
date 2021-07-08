@@ -75,6 +75,12 @@
         </tr>
     </table>
 
+    <table width="59%" align="left" style="margin-top: 5%;padding-top: 7px" cellpadding=0 cellspacing=0>
+        <tr align="right">
+            <td><img src="data:image/png;base64, {{ $image }}"></td>
+        </tr>
+    </table>
+
     <table width="40%" align="right" style="margin-top: 2%">
         <tr>
             <td>Medan, {{ date('d/m/Y') }}</td>
@@ -82,7 +88,7 @@
         <tr>
             <td>Orangtua/Wali Siswa</td>
         </tr>
-        <tr style="line-height:80px;">
+        <tr style="line-height:75px;">
             <td><span style="font-weight: bold">{{ $data->nama_ortu }}</span></td>
         </tr>
     </table>

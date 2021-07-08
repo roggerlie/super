@@ -6,6 +6,7 @@ use App\Models\Pernyataan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PernyataanController extends Controller
 {
@@ -25,10 +26,32 @@ class PernyataanController extends Controller
         Pernyataan::create($input);
 
         $data = Pernyataan::where('nisn', $request->nisn)->first();
+        $qrcode = $data->nama_ortu . '
+' . date('d/m/Y') . '
+' . $data->nama_siswa . '
+' . $data->jenjang . '
+Surat Pernyataan';
+        $image = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate($qrcode));
 
-        $pdf = PDF::loadView('form_pdf', compact('data'));
+        $pdf = PDF::loadView('form_pdf', compact('data', 'image'));
         Storage::put('public/' . $request->jenjang . '/' . $request->nisn . '.pdf', $pdf->output());
 
         return view('form_berhasil');
+    }
+
+    public function test()
+    {
+        $data = Pernyataan::where('nisn', '56787888')->first();
+        $qrcode = $data->nama_ortu . '
+' . date('d/m/Y') . '
+' . $data->nama_siswa . '
+' . $data->jenjang . '
+Surat Pernyataan';
+        $image = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate($qrcode));
+        $pdf = PDF::loadView('form_pdf', compact('data', 'image'));
+        return $pdf->download('adadad.pdf');
+        // return $pdf->stream("dompdf_out.pdf", array("Attachment" => false));
+        // return view('form_pdf', compact('data', 'image'));
+
     }
 }
