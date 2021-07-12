@@ -17,8 +17,20 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<div class="image-holder" style="display: flex; justify-content: center; align-self: center">
-				<img style="width: 60%" src="{{ asset('assets/images/logo-removebg-preview.png') }}" alt="">
+			<div class="image-holder" style="display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: center;
+            align-items: center;">
+				<img style="width: 50%" src="{{ asset('assets/images/logo-removebg-preview.png') }}" alt="">
+                <div style="justify-content: center;
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                align-items: center;">
+                    <h1>Setuju : {{ App\Models\Pernyataan::where('status', 'Approved')->count() }}</h1>
+                    <h1>Tidak Setuju : {{ App\Models\Pernyataan::where('status', 'Rejected')->count() }}</h1>
+                </div>
 			</div>
             <form id="form" action="{{ route('pernyataan.simpan') }}" method="POST">
                 @csrf
