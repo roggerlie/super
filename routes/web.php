@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PernyataanController;
-use App\Http\Controllers\WebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +23,6 @@ Auth::routes();
 Route::get('/admin', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
 
 Route::get('test/{nis}', [PernyataanController::class, 'test']);
-
-Route::post('tagihan', [WebhookController::class, 'tagihan']);
 
 Route::get('info', function () {
     return phpinfo();
