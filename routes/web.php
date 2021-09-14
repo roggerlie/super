@@ -25,7 +25,7 @@ Route::get('/admin', [App\Http\Controllers\Auth\LoginController::class, 'showLog
 
 Route::get('test/{nis}', [PernyataanController::class, 'test']);
 
-Route::get('tagihan', [WebhookController::class, 'tagihan']);
+Route::post('tagihan', [WebhookController::class, 'tagihan']);
 
 Route::get('info', function () {
     return phpinfo();
